@@ -1,7 +1,7 @@
 A brief overview on the results
 ===============================
 Encoding: [s1, s2, w11, w12, w21, w22]
-* s1, s2: semi-final teams. w1x: wild-card teams on the s1 branch. w2x: wild-card teams on the s2 branch.
+- s1, s2: semi-final teams. w1x: wild-card teams on the s1 branch. w2x: wild-card teams on the s2 branch.
 
 
  * -0.125
