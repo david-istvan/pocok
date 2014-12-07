@@ -3,19 +3,26 @@ package hu.superblow.pocok
 object Solver {
 
   def solve() {
-    var solutions: List[(Double, List[Int])] = List()
+    var weightVectors: List[List[Int]] = List()
 
     for (i <- 1 to 63) {
       val weightVector = Numerics.get(i)
-      val n = Numerics.n(weightVector)
-      val cost = Numerics.cost(n)
-
-      val sumCost = calculateEV(weightVector, n) + cost
-
-      solutions = solutions ::: List((sumCost, weightVector))
+      weightVectors = weightVectors ::: List(weightVector)
     }
 
-    solutions.toSeq.sortBy(-_._1).foreach(entry => println(entry._1 + " : " + entry._2))
+    weightVectors.groupBy(vector => {
+      val n = Numerics.n(vector)
+      val cost = Numerics.cost(n)
+      calculateEV(vector, n) + cost
+    })
+      .toSeq
+      .sortBy(-_._1)
+      .foreach(entry => {
+        println(" * " + entry._1)
+        entry._2.foreach(vectorEntry => {
+          println("  * " + vectorEntry.toString)
+        })
+      })
   }
 
   def calculateEV(weightVector: List[Int], n: Int): Double = {
