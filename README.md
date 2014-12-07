@@ -5,7 +5,7 @@ Encoding: [s1, s2, w11, w12, w21, w22]
 * w1x: wild-card teams on the s1 branch
 * w2x: wild-card teams on the s2 branch
 
-  * -0.125
+* -0.125
    * List(0, 0, 0, 0, 0, 1)
    * List(0, 0, 0, 0, 1, 0)
    * List(0, 0, 0, 1, 0, 0)
