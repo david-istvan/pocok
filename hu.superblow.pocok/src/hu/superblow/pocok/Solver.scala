@@ -1,15 +1,10 @@
 package hu.superblow.pocok
 
+import com.sun.org.apache.bcel.internal.generic.RET
+
 object Solver {
 
   def solve() {
-    var weightVectors: List[List[Int]] = List()
-
-    for (i <- 1 to 63) {
-      val weightVector = Numerics.get(i)
-      weightVectors = weightVectors ::: List(weightVector)
-    }
-
     weightVectors.groupBy(vector => {
       val n = Numerics.n(vector)
       val cost = Numerics.cost(n)
@@ -23,6 +18,20 @@ object Solver {
           println("  * " + vectorEntry.toString)
         })
       })
+  }
+
+  val weightVectors = {
+    def vectorize(current: Int, to: Int, acc: List[List[Int]]): List[List[Int]] = {
+      val weightVector = Numerics.get(current)
+      val newVector = acc ::: List(weightVector)
+      if (current < to) {
+        vectorize(current + 1, to, newVector)
+      } else {
+        newVector
+      }
+    }
+
+    vectorize(1, 63, List())
   }
 
   def calculateEV(weightVector: List[Int], n: Int): Double = {
